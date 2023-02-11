@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 
 const ProductRow = props => {
   const {product} = props;
-
+  const availability = product.instock ? "Available" : "Not Available"
   return (
     <tr>
       <td>{product.name}</td>
       <td align='right'>{product.price}</td>
+      <td align='right'>{availability}</td>
     </tr>
   );
 }
@@ -26,6 +27,7 @@ const ProductTable = props => {
         <tr>
           <th align='left'>Name</th>
           <th align='right'>Price</th>
+          <th align='right'>Availability</th>
         </tr>
       </thead>
       <tbody>
