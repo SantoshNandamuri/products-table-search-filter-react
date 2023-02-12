@@ -44,13 +44,13 @@ const ProductTable = props => {
 }
 
 const SearchBar = props => {
-  const {searchText, inStockOnly} = props;
+  const {searchText, inStockOnly, onSearchTextChange, onInStockOnlyChange} = props;
 
   return (
     <form>
-      <input type="text" placeholder='search' value={searchText}/>
+      <input type="text" placeholder='search' value={searchText} onChange={event => onSearchTextChange(event.target.value)}/>
       <p>
-        <input type="checkbox" checked={inStockOnly}/>
+        <input type="checkbox" checked={inStockOnly} onChange={event => onInStockOnlyChange(event.target.checked)}/>
         <span> Show only products in stock</span>
       </p>
     </form>
@@ -61,10 +61,19 @@ const FilterableProductTable = props => {
   const [searchText, setSearchText] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
   const {products} = props;
-  console.log("productsJson");
+  
+  const handleSearchTextChange = searchText => {
+    setSearchText(searchText);
+  }
+
+  const handleInStockOnlyChange = inStockOnly => {
+    setInStockOnly(inStockOnly);
+  }
+
   return (
     <div style={{fontFamily: "sans-serif"}}>
-      <SearchBar searchText={searchText} inStockOnly={inStockOnly}/>
+      <SearchBar searchText={searchText} inStockOnly={inStockOnly} 
+      onSearchTextChange={handleSearchTextChange} onInStockOnlyChange={handleInStockOnlyChange}/>
       <ProductTable products={products} searchText={searchText} inStockOnly={inStockOnly} />
       
     </div>
