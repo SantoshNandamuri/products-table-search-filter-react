@@ -14,10 +14,16 @@ const ProductRow = props => {
 }
 
 const ProductTable = props => {
-  const {products} = props;
+  const {searchText, inStockOnly, products} = props;
   const rows = [];
 
   products.forEach(product => {
+    if (product.name.indexOf(searchText) === -1) {
+      return;
+    }
+    if (inStockOnly && !product.instock) {
+      return;
+    }
     rows.push(<ProductRow product={product} key={product.name}/>);
   });
 
@@ -37,12 +43,14 @@ const ProductTable = props => {
   );
 }
 
-const SearchBar = () => {
+const SearchBar = props => {
+  const {searchText, inStockOnly} = props;
+
   return (
     <form>
-      <input type="text" placeholder='search'/>
+      <input type="text" placeholder='search' value={searchText}/>
       <p>
-        <input type="checkbox"/>
+        <input type="checkbox" checked={inStockOnly}/>
         <span> Show only products in stock</span>
       </p>
     </form>
@@ -50,12 +58,14 @@ const SearchBar = () => {
 }
 
 const FilterableProductTable = props => {
+  const [searchText, setSearchText] = useState("");
+  const [inStockOnly, setInStockOnly] = useState(false);
   const {products} = props;
   console.log("productsJson");
   return (
     <div style={{fontFamily: "sans-serif"}}>
-      <SearchBar />
-      <ProductTable products={products} />
+      <SearchBar searchText={searchText} inStockOnly={inStockOnly}/>
+      <ProductTable products={products} searchText={searchText} inStockOnly={inStockOnly} />
       
     </div>
   );
@@ -74,10 +84,22 @@ const PRODUCTS = [
     name: "product-name-1"
   },
   {
+    category: "product-category-1",
+    price: "$25.99",
+    instock: false,
+    name: "product-name-2"
+  },
+  {
     category: "product-category-2",
     price: "$25.99",
     instock: true,
-    name: "product-name-2"
+    name: "product-name-3"
+  },
+  {
+    category: "product-category-2",
+    price: "$25.99",
+    instock: false,
+    name: "product-name-4"
   }
 ]
 
