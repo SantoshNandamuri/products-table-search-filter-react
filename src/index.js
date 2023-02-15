@@ -88,27 +88,39 @@ const FilterableProductTable = props => {
 const PRODUCTS = [
   {
     category: "product-category-1",
-    price: "$25.99",
+    price: "$29.99",
     instock: true,
-    name: "product-name-1"
+    name: "product-name-01"
   },
   {
     category: "product-category-1",
-    price: "$25.99",
+    price: "$19.99",
     instock: false,
-    name: "product-name-2"
+    name: "product-name-02"
   },
   {
     category: "product-category-2",
-    price: "$25.99",
+    price: "$24.99",
     instock: true,
-    name: "product-name-3"
+    name: "product-name-32"
   },
   {
     category: "product-category-2",
-    price: "$25.99",
+    price: "$59.99",
     instock: false,
-    name: "product-name-4"
+    name: "product-40"
+  },
+  {
+    category: "product-category-3",
+    price: "$74.99",
+    instock: true,
+    name: "product-55"
+  },
+  {
+    category: "product-category-3",
+    price: "$99.99",
+    instock: false,
+    name: "product-65"
   }
 ]
 
