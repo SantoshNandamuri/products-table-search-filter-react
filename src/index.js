@@ -80,11 +80,6 @@ const FilterableProductTable = props => {
   );
 }
 
-// const [data, setdata] = useState([]);
-
-// fetch('https://dummyjson.com/products')
-// .then(res => res.json()).then(json => setdata(json))
-
 const PRODUCTS = [
   {
     category: "product-category-1",
